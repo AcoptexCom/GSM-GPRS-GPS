@@ -21,7 +21,7 @@ void setup()
   GSMmodule.begin(9600);    // Initialise serial communicstion with GPS module at 9600 bps
   pinMode(ledPin, OUTPUT);  // Set ledPin as OUTPUT
   digitalWrite(ledPin, LOW);// By default the LED is off
-  delay(2000);              // Give time to your GSM GPS module logon to GSM network
+  delay(2000);              // Give time to your GSM module logon to GSM network
   Serial.println("GSMmodule ready...");  //Print test in Serial Monitor
   GSMmodule.print("AT\r"); // AT command to set module to SMS mode
   delay(100); // Set delay for 100 ms
@@ -44,7 +44,7 @@ void loop()
 
   }
   if (textMessage.indexOf("On") >= 0) {
-    // Turn on relay and save current state
+    // Turn on LED and save current state
     digitalWrite(ledPin, HIGH);
     ledState = "ON";
     textMessage = "";
@@ -52,7 +52,7 @@ void loop()
     sendSMS(message);
   }
   if (textMessage.indexOf("Off") >= 0) {
-    // Turn off relay and save current state
+    // Turn off LED and save current state
     digitalWrite(ledPin, LOW);
     ledState = "OFF";
     textMessage = "";
